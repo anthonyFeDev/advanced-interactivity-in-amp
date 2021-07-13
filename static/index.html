@@ -142,13 +142,6 @@ limitations under the License.
 </head>
 
 <body>
-  <amp-state id="selected">
-    <script type="application/json">
-      {
-        "slide": event.index
-      }
-    </script>
-  </amp-state>  
   <header id="header" class="mdl-color--black mdl-color-text--white">
     <amp-img class="menu" src="./img/ic_menu_white_24dp_1x.png" width=24 height=24></amp-img>
     <span class="mdl-color-text--blue">AMP</span>PAREL
@@ -158,13 +151,6 @@ limitations under the License.
   <div id="container">
     <h5 class="title">MEN'S COTTON CREW NECK<br>LONG SLEEVE T-SHIRT</h5>
     <h6 class="rating"><span class="mdl-color-text--red">★★★★☆</span> <span class="mdl-color-text--grey">(14)</span></h6>
-
-    <amp-carousel type="slides" layout="fixed-height" height=250 id="carousel" on="slideChange:AMP.setState({selected: {slide: event.index}})">
-      <!-- TODO: "Changing images in amp-carousel" -->
-      <amp-img width=200 height=250 src="./shirts/black.jpg"></amp-img>
-      <amp-img width=300 height=375 src="./shirts/black.jpg"></amp-img>
-      <amp-img width=400 height=500 src="./shirts/black.jpg"></amp-img>
-    </amp-carousel>
     <!-- Available shirts: Maps unique strings to each image -->
     <amp-state id="shirts">
       <script type="application/json">
@@ -204,6 +190,21 @@ limitations under the License.
         }
       </script>
     </amp-state>
+    <!-- Track SKU state -->
+  <amp-state id="selected">
+    <script type="application/json">
+      {
+        "slide": 0,
+        "sku": "1001"
+      }
+    </script>
+  </amp-state>
+    <amp-carousel type="slides" layout="fixed-height" height=250 id="carousel" on="slideChange:AMP.setState({selected: {slide: event.index}})">
+      <!-- TODO: "Changing images in amp-carousel" -->
+      <amp-img width=200 height=250 src="./shirts/black.jpg" [src]="shirts[selected.sku].image"></amp-img>
+      <amp-img width=300 height=375 src="./shirts/black.jpg" [src]="shirts[selected.sku].image"></amp-img>
+      <amp-img width=400 height=500 src="./shirts/black.jpg" [src]="shirts[selected.sku].image"></amp-img>
+    </amp-carousel>
     <!-- TODO: "Add a slide indicator" -->
     <p class="dots">
       <span [class]="selected.slide == 0 ? 'current' : ''" class="current"></span>
@@ -218,8 +219,9 @@ limitations under the License.
         <!--
           Tip: <amp-selector> functions like an <input> element when nested in a <form>.
           @see https://www.ampproject.org/docs/reference/components/amp-form#inputs-and-fields
-        -->
-        <amp-selector name="color">
+        -->  
+  <!-- Update SKU state -->
+        <amp-selector name="color" on="select:AMP.setState({selected: {sku: event.targetOption}})">
           <table>
             <tr>
               <td><amp-img width=40 height=40 option="1001" src="./shirts/swatch/black.jpg" selected></amp-img></td>
