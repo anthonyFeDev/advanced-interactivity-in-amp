@@ -152,7 +152,7 @@ limitations under the License.
     <h5 class="title">MEN'S COTTON CREW NECK<br>LONG SLEEVE T-SHIRT</h5>
     <h6 class="rating"><span class="mdl-color-text--red">★★★★☆</span> <span class="mdl-color-text--grey">(14)</span></h6>
     <!-- Available shirts: Maps unique strings to each image -->
-    <amp-state id="shirts">
+    <amp-state id="shirts" [src]="'/shirts/sizesAndPrices?sku=' + selected.sku">
       <script type="application/json">
         {
           "1001": {
@@ -253,26 +253,25 @@ limitations under the License.
         <amp-selector name="size">
           <table>
             <tr>
-              <!-- TODO: "Fetching available sizes for a shirt" -->
-              <td>
+              <td [class]="shirts[selected.sku].sizes['XS'] ? '' : 'unavailable'">
                 <div option="XS">XS</div>
               </td>
-              <td>
+              <td [class]="shirts[selected.sku].sizes['S'] ? '' : 'unavailable'">
                 <div option="S">S</div>
               </td>
-              <!-- TODO: "Fetching available sizes for a shirt" -->
-              <td>
+              <td [class]="shirts[selected.sku].sizes['M'] ? '' : 'unavailable'">
                 <div option="M">M</div>
               </td>
-              <td>
+              <td [class]="shirts[selected.sku].sizes['L'] ? '' : 'unavailable'">
                 <div option="L">L</div>
               </td>
-              <td>
+              <td [class]="shirts[selected.sku].sizes['XL'] ? '' : 'unavailable'">
                 <div option="XL">XL</div>
               </td>
             </tr>
           </table>
         </amp-selector>
+        
       </div>
 
       <div class="options quantity">
