@@ -166,6 +166,44 @@ limitations under the License.
       <amp-img width=400 height=500 src="./shirts/black.jpg"></amp-img>
     </amp-carousel>
     <!-- Available shirts: Maps unique strings to each image -->
+    <amp-state id="shirts">
+      <script type="application/json">
+        {
+          "1001": {
+            "color": "black",
+            "image": "./shirts/black.jpg"
+          },
+          "1002": {
+            "color": "blue",
+            "image": "./shirts/blue.jpg"
+          },
+          "1010": {
+            "color": "brown",
+            "image": "./shirts/brown.jpg"
+          },
+          "1014": {
+            "color": "dark green",
+            "image": "./shirts/dark-green.jpg"
+          },
+          "1015": {
+            "color": "gray",
+            "image": "./shirts/gray.jpg"
+          },
+          "1016": {
+            "color": "light gray",
+            "image": "./shirts/light-gray.jpg"
+          },
+          "1021": {
+            "color": "navy",
+            "image": "./shirts/navy.jpg"
+          },
+          "1030": {
+            "color": "wine",
+            "image": "./shirts/wine.jpg"
+          }
+        }
+      </script>
+    </amp-state>
     <!-- TODO: "Add a slide indicator" -->
     <p class="dots">
       <span [class]="selected.slide == 0 ? 'current' : ''" class="current"></span>
